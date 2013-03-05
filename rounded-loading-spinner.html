@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="rounded-loading-spinner.css">
+
+<!-- START LOADING SPINNER MARKUP -->
+<div
+  class="full-screen-rounded-loading-spinner show-rounded-loading-spinner">
+	<div class="rounded-loading-spinner-base">
+		<img src="https://github.com/escalant3/go-ttc/blob/master/www/img/loading.gif?raw=true" height="64">
+	</div>
+</div>
+
+<div class="rounded-loading-spinner-modal-overlay show-rounded-loading-spinner"></div>
+<!-- END LOADING SPINNER MARKUP -->
+
+<!-- Don't mind this stuff. It's only for the demo -->
+<style>
+button { position: absolute; bottom: 5px; left: 50%; width: 80px; padding: 5px; margin-left: -45px; z-index: 999; }
+</style>
+<button>Hide</button>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+$(document).ready(function(){
+
+	var toggle_loading = function(button) {
+		if (!$('.full-screen-rounded-loading-spinner').hasClass('show-rounded-loading-spinner')) {
+			$('.full-screen-rounded-loading-spinner').addClass('show-rounded-loading-spinner');
+			$('.rounded-loading-spinner-modal-overlay').addClass('show-rounded-loading-spinner');
+			$(button).text('Hide');
+		} else {
+			$('.full-screen-rounded-loading-spinner').removeClass('show-rounded-loading-spinner');
+			$('.rounded-loading-spinner-modal-overlay').removeClass('show-rounded-loading-spinner');
+			$(button).text('Show');
+		}
+	};
+
+	$('button').click(function(){
+		toggle_loading(this);
+	});
+
+});
+</script>
