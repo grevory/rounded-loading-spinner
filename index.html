@@ -42,6 +42,136 @@
 <p>This does not require any JS to work. It is all CSS and HTML. You just need to be able to add the class "show-rounded-loading-spinner" to show the loader and remove that class to hide it.</p>
 
 <p>I have added some simple jQuery to show how it works.</p>
+
+<style>
+
+/* BODY cannot have margins for the modal overlay to work. If you need margins you can remove this rule and create your own workaround */
+body {
+  margin: 0;
+}
+
+.rounded-loading-spinner-modal-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(25,25,25,0.5);
+  opacity: 0;
+  /* Change the transition time here */
+  -webkit-transition: opacity 1s ease-in;
+     -moz-transition: opacity 1s ease-in;
+       -o-transition: opacity 1s ease-in;
+      -ms-transition: opacity 1s ease-in;
+          transition: opacity 1s ease-in;
+}
+
+.rounded-loading-spinner-modal-overlay.show-rounded-loading-spinner {
+  z-index: 998;
+}
+
+.full-screen-rounded-loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -32px 0 0 -32px;
+  z-index: 999;
+  opacity: 0;
+  /* Change the transition time here */
+  -webkit-transition: opacity 1s ease-in;
+     -moz-transition: opacity 1s ease-in;
+       -o-transition: opacity 1s ease-in;
+      -ms-transition: opacity 1s ease-in;
+          transition: opacity 1s ease-in;
+}
+
+.show-rounded-loading-spinner {
+  display: block;
+  opacity: 1 !important;
+}
+
+.hide-rounded-loading-spinner {
+  z-index: -100;
+  display: none;
+}
+
+.rounded-loading-spinner-base {
+  background: white;
+  display: inline-block;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 64px;
+     -moz-border-radius: 64px;
+       -o-border-radius: 64px;
+      -ms-border-radius: 64px;
+          border-radius: 64px;
+  -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+     -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+       -o-box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      -ms-box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+          box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* GitHub Pages hack */
+img {
+  width: 64px;
+  height: 64px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.rounded-loading-spinner-base {
+  height: 66px;
+}
+
+#main_content {
+  padding-bottom: 60px;
+}
+
+</style>
+
+<!-- START LOADING SPINNER MARKUP -->
+<div
+  class="full-screen-rounded-loading-spinner show-rounded-loading-spinner">
+  <div class="rounded-loading-spinner-base">
+    <img src="https://github.com/escalant3/go-ttc/blob/master/www/img/loading.gif?raw=true" height="64">
+  </div>
+</div>
+
+<div class="rounded-loading-spinner-modal-overlay show-rounded-loading-spinner"></div>
+<!-- END LOADING SPINNER MARKUP -->
+
+<!-- Don't mind this stuff. It's only for the demo -->
+<style>
+button { position: absolute; bottom: 20px; left: 50%; width: 80px; padding: 5px; margin-left: -45px; z-index: 999; }
+</style>
+<button>Hide</button>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+$(document).ready(function(){
+
+  var toggle_loading = function(button) {
+    if (!$('.full-screen-rounded-loading-spinner').hasClass('show-rounded-loading-spinner')) {
+      $('.full-screen-rounded-loading-spinner').addClass('show-rounded-loading-spinner');
+      $('.rounded-loading-spinner-modal-overlay').addClass('show-rounded-loading-spinner');
+      $(button).text('Hide');
+    } else {
+      $('.full-screen-rounded-loading-spinner').removeClass('show-rounded-loading-spinner');
+      $('.rounded-loading-spinner-modal-overlay').removeClass('show-rounded-loading-spinner');
+      $(button).text('Show');
+    }
+  };
+
+  $('button').click(function(){
+    toggle_loading(this);
+  });
+
+});
+</script>
+
+
       </section>
     </div>
 
@@ -54,6 +184,20 @@
     </div>
 
     
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36018781-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
   </body>
 </html>
